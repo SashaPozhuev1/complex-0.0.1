@@ -21,15 +21,17 @@ complex_t sub( complex_t lhs, complex_t rhs ) {
 }
 
 complex_t mul( complex_t lhs, complex_t rhs ) {
-	lhs.real = lhs.real * rhs.real - lhs.imag * rhs.imag;
-	lhs.imag = lhs.imag * rhs.real + lhs.real * rhs.imag;
-	return lhs;
+	complex_t complexn;
+	complexn.real = lhs.real * rhs.real - lhs.imag * rhs.imag;
+	complexn.imag = lhs.imag * rhs.real + lhs.real * rhs.imag;
+	return complexn;
 }
 
 complex_t div( complex_t lhs, complex_t rhs ) {
-	lhs.real = ( lhs.real * rhs.real + lhs.imag * rhs.imag ) / ( rhs.real * rhs.real + rhs.imag * rhs.imag );
-	lhs.imag = ( lhs.imag * rhs.real - lhs.real * rhs.imag ) / ( rhs.real * rhs.real + rhs.imag * rhs.imag );
-	return lhs;
+	complex_t complexn;
+	complexn.real = ( lhs.real * rhs.real + lhs.imag * rhs.imag ) / ( rhs.real * rhs.real + rhs.imag * rhs.imag );
+	complexn.imag = ( lhs.imag * rhs.real - lhs.real * rhs.imag ) / ( rhs.real * rhs.real + rhs.imag * rhs.imag );
+	return complexn;
 }
 
 bool write( ostream &stream, complex_t &lhs ) {
