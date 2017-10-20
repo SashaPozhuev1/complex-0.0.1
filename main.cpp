@@ -6,7 +6,7 @@ using namespace std;
 struct complex_t {
 	float real;
 	float imag;
-};
+}
 
 complex_t add( complex_t lhs, complex_t rhs ) {
 	lhs.real += rhs.real;
