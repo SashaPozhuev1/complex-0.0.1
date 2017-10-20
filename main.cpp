@@ -8,42 +8,42 @@ struct complex_t {
 	float imag;
 };
 
-complex_t add(complex_t lhs, complex_t rhs) {
+complex_t add( complex_t lhs, complex_t rhs ) {
 	lhs.real += rhs.real;
 	lhs.imag += rhs.imag;
 	return lhs;
 }
 
-complex_t sub(complex_t lhs, complex_t rhs) {
+complex_t sub( complex_t lhs, complex_t rhs ) {
 	lhs.real -= rhs.real;
 	lhs.imag -= rhs.imag;
 	return lhs;
 }
 
-complex_t mul(complex_t lhs, complex_t rhs) {
+complex_t mul( complex_t lhs, complex_t rhs ) {
 	lhs.real = lhs.real * rhs.real - lhs.imag * rhs.imag;
 	lhs.imag = lhs.imag * rhs.real + lhs.real * rhs.imag;
 	return lhs;
 }
 
-complex_t div(complex_t lhs, complex_t rhs) {
-	lhs.real = (lhs.real * rhs.real + lhs.imag * rhs.imag) / (rhs.real * rhs.real + rhs.imag * rhs.imag);
-	lhs.imag = (lhs.imag * rhs.real - lhs.real * rhs.imag) / (rhs.real * rhs.real + rhs.imag * rhs.imag);
+complex_t div( complex_t lhs, complex_t rhs ) {
+	lhs.real = ( lhs.real * rhs.real + lhs.imag * rhs.imag ) / ( rhs.real * rhs.real + rhs.imag * rhs.imag );
+	lhs.imag = ( lhs.imag * rhs.real - lhs.real * rhs.imag ) / ( rhs.real * rhs.real + rhs.imag * rhs.imag );
 	return lhs;
 }
 
-bool write(ostream &stream, complex_t &lhs) {
+bool write( ostream &stream, complex_t &lhs ) {
 	cout << "(" << lhs.real << ", " << lhs.imag << ")" << '\n';
 	return true;
 }
 
-bool read(istream &stream, complex_t &complex) {
+bool read( istream &stream, complex_t &complex ) {
 	char znak;
-	if ((stream >> znak) && (znak == '(') && 
-		(stream >> complex.real) && 
-		(stream >> znak) && (znak == ',') && 
-		(stream >> complex.imag) && 
-		(stream >> znak) && (znak == ')')) {
+	if ( ( stream >> znak ) && ( znak == '(' ) && 
+		( stream >> complex.real ) && 
+		( stream >> znak ) && ( znak == ',' ) && 
+		( stream >> complex.imag ) && 
+		( stream >> znak ) && ( znak == ')' ) ) {
 		return true;
 	}
 	else {
@@ -62,19 +62,19 @@ int main()
 	istringstream stream(stroka);
 
 
-	if ((read(stream, lhs)) && (stream >> op) && (read(stream, rhs))) {
-		if (op == '+') {
-			lhs = add(lhs, rhs);
+	if ( ( read( stream, lhs ) ) && ( stream >> op ) && ( read( stream, rhs ) ) ) {
+		if ( op == '+' ) {
+			lhs = add( lhs, rhs );
 		}
-		else if (op == '-') {
-			lhs = sub(lhs, rhs);
+		else if ( op == '-' ) {
+			lhs = sub( lhs, rhs );
 		}
-		else if (op == '*') {
-			lhs = mul(lhs, rhs);
+		else if ( op == '*' ) {
+			lhs = mul( lhs, rhs );
 		}
-		else if (op == '/') {
-			if ((rhs.real != 0) && (rhs.imag != 0)) {
-				lhs = div(lhs, rhs);
+		else if ( op == '/' ) {
+			if ( ( rhs.real != 0 ) && ( rhs.imag != 0 ) ) {
+				lhs = div( lhs, rhs );
 			}
 			else {
 				res = false;
@@ -88,13 +88,13 @@ int main()
 		res = false;
 	}
 
-	if (res == true) {
-		write(cout, lhs);
+	if ( res == true ) {
+		write( cout, lhs );
 	}
 	else {
 		cout << "An error has occured while reading input data";
 	}
 	
-	cin.get();
+    cin.get();
     return 0;
 }
